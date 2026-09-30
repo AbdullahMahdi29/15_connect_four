@@ -18,8 +18,11 @@ class Board:
         return all(self.grid[0][c] != "." for c in range(COLS))
 
     def winner(self, token):
-
-        directions = [(0, 1), (1, 0)]
+        # (0, 1)  -> Horizontal: left-to-right
+        # (1, 0)  -> Vertical: top-to-bottom
+        # (1, 1)  -> Diagonal: top-left to bottom-right (\)
+        # (1, -1) -> Diagonal: bottom-left to top-right (/)
+        directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
         for r in range(ROWS):
             for c in range(COLS):
                 if self.grid[r][c] != token:
